@@ -22,10 +22,15 @@ RUN \
   npm ci --no-audit --no-fund --loglevel=error --no-progress --omit=dev --ignore-scripts && npm cache clean --force
 
 # Create config directory and link config.yaml. Added hardcoded dirs(constants.js?)
-# that must be present for Non-Root Mode and volumeless docker runs.
+# that must be present for Non-Root Mode and volumeless 
+# 开启服务器插件
+ENV SILLYTAVERN_ENABLESERVERPLUGINS=true
+
+# 创建目录、下载插件、修改权限
 RUN \
   rm -f "config.yaml" || true && \
   mkdir -p config data plugins public/scripts/extensions/third-party backups && \
+  git clone https://github.com/breezewb/st-saves.git /home/node/app/plugins/st-saves && \
   chown -R node:node config data plugins public/scripts/extensions/third-party backups && \
   ln -s "./config/config.yaml" "config.yaml"
 
