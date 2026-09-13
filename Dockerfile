@@ -26,11 +26,11 @@ RUN \
 # 开启服务器插件
 ENV SILLYTAVERN_ENABLESERVERPLUGINS=true
 
-# 创建目录、下载插件、修改权限
+# 创建目录，下载插件，并修改权限
 RUN \
   rm -f "config.yaml" || true && \
   mkdir -p config data plugins public/scripts/extensions/third-party backups && \
-  git clone https://github.com/breezewb/st-saves.git /home/node/app/plugins/st-saves && \
+  git clone https://github.com/breezewb/st-saves.git /home/node/app/public/scripts/extensions/third-party/st-saves && \
   chown -R node:node config data plugins public/scripts/extensions/third-party backups && \
   ln -s "./config/config.yaml" "config.yaml"
 
