@@ -30,7 +30,7 @@ ENV SILLYTAVERN_ENABLESERVERPLUGINS=true
 RUN \
   rm -f "config.yaml" || true && \
   mkdir -p config data plugins public/scripts/extensions/third-party backups && \
-  git clone https://github.com/breezewb/st-saves.git /home/node/app/public/scripts/extensions/third-party/st-saves && \
+  git clone https://github.com/breezewb/st-saves.git /home/node/app/plugins/st-saves && \
   chown -R node:node config data plugins public/scripts/extensions/third-party backups && \
   ln -s "./config/config.yaml" "config.yaml"
 
